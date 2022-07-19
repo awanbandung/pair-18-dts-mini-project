@@ -2,13 +2,13 @@
 import tmdb from "../apis/tmdb";
 
 import React, { useEffect, useState } from "react";
-import { Box, Typography,Pagination , Stack  } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 // "./ListMovies.css";
-import CardMovie from "../component/CardMovie";
+import CardMovie from "../components/CardMovie";
 
 const ListMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -47,7 +47,7 @@ const ListMovies = () => {
       >
         POPULAR MOVIE
       </Typography>
-      
+
       <Box
         component="div"
         sx={{

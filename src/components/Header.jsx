@@ -37,19 +37,19 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link ><Link style={{textDecoration: 'none', color: 'white'}} to="/">Home</Link></Nav.Link>
-            <Nav.Link ><Link style={{textDecoration: 'none', color: 'white'}} to="/">Series</Link></Nav.Link>
-            <Nav.Link ><Link style={{textDecoration: 'none', color: 'white'}} to="/">Movies</Link></Nav.Link>
-            <Nav.Link ><Link style={{textDecoration: 'none', color: 'white'}} to="/">New and Popular</Link></Nav.Link>
-            <Nav.Link ><Link style={{textDecoration: 'none', color: 'white'}} to="/">My List</Link></Nav.Link>
+            <Nav.Link ><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Home</Link></Nav.Link>
+            <Nav.Link ><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Series</Link></Nav.Link>
+            <Nav.Link ><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Movies</Link></Nav.Link>
+            <Nav.Link ><Link style={{ textDecoration: 'none', color: 'white' }} to="/">New and Popular</Link></Nav.Link>
+            <Nav.Link ><Link style={{ textDecoration: 'none', color: 'white' }} to="/">My List</Link></Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
-            <Nav.Link href="#home"><img  alt="" width='15em' src={cari}/> </Nav.Link>
-            <Nav.Link style={{color: 'white',}}  disabled>{user !== null ? user.email : ""}</Nav.Link>
-            <Nav.Link href="#home"><img width='15em' src={fill} alt=""/> </Nav.Link>
-            <Nav.Link href="#home"><img width='15em' src={lonceng}  alt=""/> </Nav.Link>
-            <Nav.Link >{user !== null ? <Button variant="contained" onClick={buttonLogoutOnClickHandler}>Logout</Button> : <Link type="button" class="btn btn-success" style={{textDecoration: 'none', color: 'white'}} to="/Login">Login</Link>}</Nav.Link>
-            
+            <Nav.Link href="#home"><img alt="" width='15em' src={cari} /> </Nav.Link>
+            <Nav.Link style={{ color: 'white', }} disabled>{user !== null ? user.email : ""}</Nav.Link>
+            <Nav.Link href="#home"><img width='15em' src={fill} alt="" /> </Nav.Link>
+            <Nav.Link href="#home"><img width='15em' src={lonceng} alt="" /> </Nav.Link>
+            <Nav.Link >{user !== null ? <Button variant="contained" onClick={buttonLogoutOnClickHandler}>Logout</Button> : <Link type="button" class="btn btn-success" style={{ textDecoration: 'none', color: 'white' }} to="/Login">Login</Link>}</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

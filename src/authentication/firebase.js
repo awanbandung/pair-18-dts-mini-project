@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import Swal from "sweetalert2";
+
+import { useNavigate } from "react-router-dom";
 
 import {
   getAuth,
@@ -28,74 +31,90 @@ const auth = getAuth(app);
 
 const registerDenganEmailDanPassword = async (email, password) => {
   // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth
-  try {
-    const response = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+  await createUserWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    const navigate = useNavigate();
+    navigate("/");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
 
-    // Pada aturan firebase authentication
-    // Setelah user selesai registrasi, maka secara otomatis akan melakukan Sign In
-    // sehingga kita bisa mengecek apakah seseorang sudah berhasil masuk atau belum
-
-    console.log(
-      "User yang teregistrasi dan berhasil login adalah",
-      response.user
-    );
-  } catch (err) {
-    console.log(err);
-
-    // Sebenarnya di dalam err dari Firebase ini (dalam bentuk Object)
-    // ada 2 property yang penting:
-    // - code: error code dari firebase authentication ketika terjadi error
-    // - message: error message dari firebase authentication ketika terjadi error
-    console.log("error code auth", err.code);
-    console.log("error message auth", err.message);
-  }
+    if (errorCode === "auth/wrong-password") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "wrong password!",
+      });
+    }
+    if (errorCode === "auth/user-not-found") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "user not found!",
+      });
+    }
+  });
 };
 
 // Fungsi untuk Login
 // Kita gunakan versi async / await untuk memudahkan yah
 const loginDenganEmailDanPassword = async (email, password) => {
   // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+  await signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const navigate = useNavigate();
+      navigate("/");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
 
-    console.log("User yang berhasil login adalah", userCredential.user);
-  } catch (err) {
-    console.log(err);
-
-    // Sama dengan register
-    console.log("error code auth", err.code);
-    console.log("error message auth", err.message);
-  }
+      if (errorCode === "auth/wrong-password") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "wrong password!",
+        });
+      }
+      if (errorCode === "auth/user-not-found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "user not found!",
+        });
+      }
+    });
 };
 
 // Fungsi untuk reset Password
 const resetPassword = async (email) => {
   // Dokumentasi: https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
-  try {
-    await sendPasswordResetEmail(auth, email);
-
-    console.log("Password reset sudah dikirimkan");
-  } catch (err) {
-    console.log(err);
-  }
+  await sendPasswordResetEmail(auth, email)
+    .then((res) => console.log(res))
+    .catch((error) => {
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
+    });
 };
 
 // Fungsi untuk sign out
 const keluarDariApps = async () => {
   // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#next_steps
-  try {
-    await signOut(auth);
-  } catch (err) {
-    console.log(err);
-  }
+  await signOut(auth)
+    .then((res) => {
+      console.log("success logout", res);
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
+    });
 };
 
 // Export seluruh fungsi yang dibuat + auth

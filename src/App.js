@@ -3,9 +3,9 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DetailFilm from "./pages/DetailFilm";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-import ProtectedComponent from "./component/ProtectedComponent";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ProtectedComponent from "./components/ProtectedComponent";
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
             </ProtectedComponent>
           }
         />
-        <Route path="#" element={<Login />} />
-        <Route path="#" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         {/* <Route path="about" element={<About />} /> */}
       </Routes>
     </div>

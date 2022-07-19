@@ -1,7 +1,7 @@
 import React from 'react'
-import Footer from '../component/Footer';
-import Header from '../component/Header'
-import Slideshow from '../component/Slideshow'
+import Footer from '../components/Footer';
+import Header from '../components/Header'
+import Slideshow from '../components/Slideshow'
 
 
 import ListMoviesReal from "../container/ListMoviesReal";

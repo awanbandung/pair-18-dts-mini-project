@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from '../component/Footer'
-import Header from '../component/Header'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 import DetailMovie from '../container/DetailMovie'
 
 export default function DetailFilm() {
