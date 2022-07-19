@@ -22,7 +22,7 @@ const firebaseConfig = {
   storageBucket: "pair-18-dts-mini-project.appspot.com",
   messagingSenderId: "668080890684",
   appId: "1:668080890684:web:37401ba299815d14fcf439",
-  // measurementId: "G-RBLTRJF3EQ",
+  measurementId: "G-RBLTRJF3EQ"
 };
 
 // Sekarang di sini kita akan membuat seluruh fungsi yang digunakan untuk melakukan Register / Login
@@ -63,28 +63,28 @@ const registerDenganEmailDanPassword = async (email, password) => {
 const loginDenganEmailDanPassword = async (email, password) => {
   // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
   await signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      const navigate = useNavigate();
-      navigate("/");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
+  .then(() => {
+    const navigate = useNavigate();
+    navigate("/");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
 
-      if (errorCode === "auth/wrong-password") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "wrong password!",
-        });
-      }
-      if (errorCode === "auth/user-not-found") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "user not found!",
-        });
-      }
-    });
+    if (errorCode === "auth/wrong-password") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "wrong password!",
+      });
+    }
+    if (errorCode === "auth/user-not-found") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "user not found!",
+      });
+    }
+  });
 };
 
 // Fungsi untuk reset Password
