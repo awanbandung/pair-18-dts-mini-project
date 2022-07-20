@@ -1,5 +1,5 @@
 import React from "react";
-
+import bg from "../assets/images/ProfilePicture.png";
 import LoginOrRegisterForm from "../components/LoginOrRegisterForm";
 
 export default function Login() {
@@ -8,8 +8,8 @@ export default function Login() {
         width: '100%',
         height: '100%',
         margin: 'auto',
-        background: `url("https://nerdmovieproductions.it/wp-content/uploads/2022/04/thor.jpg") no-repeat center center fixed` ,
-        padding: '10em'
+        backgroundImage: `url(${bg})` ,
+        padding: '10em',
 
     }}>
       <LoginOrRegisterForm loginOrRegister={"login"} />

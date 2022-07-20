@@ -18,7 +18,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import CardMovie from "../components/CardMovie";
 
 const DetailMovie = () => {
-  const baseUrlForMovie = "https://image.tmdb.org/t/p/w300";
+  const baseUrlForMovie = "https://image.tmdb.org/t/p/w500";
 
   const [movies, setMovies] = useState([]);
   let params = useParams();
@@ -59,15 +59,22 @@ const DetailMovie = () => {
       >
         MOVIE DETAIL
       </Typography>
-      <Card className="boxy" sx={{ margin: "5px" , padding: '2em'}}>
-        <Box className="boxy" sx={{ width: "70em", margin:'auto' }}>
+      <Card className="boxy" sx={{ margin: "5px", padding: '2em' }}>
+        <Box className="boxy" sx={{ width: "70em", margin: 'auto' }}>
           <CardMedia
             component="img"
             image={`${baseUrlForMovie}${movies.backdrop_path}`}
             alt={movies.title}
           ></CardMedia>
         </Box>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" , margin: 'auto', width: '70em'}}>
+        <Box className="boxy" sx={{ width: "70em", margin: 'auto' }}>
+          <CardMedia
+            component="img"
+            image={`${baseUrlForMovie}${movies.backdrop_path}`}
+            alt={movies.title}
+          ></CardMedia>
+        </Box>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", margin: 'auto', width: '70em' }}>
           <Box className="boxy" sx={{ width: "20em" }}>
             <CardMedia
               component="img"
