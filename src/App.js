@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { Homepage } from './Pages/Homepage';
-import { BackgroundSlideshow } from './Component/BackgroundSlideshow';
+import { Register } from './Pages/Register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { ThemeProvider } from 'react-bootstrap';
+import Login from './Pages/Login'
 
 const App = () => {
   return (
@@ -15,9 +16,10 @@ const App = () => {
       >
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/cek' element={<BackgroundSlideshow />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
-      </ThemeProvider >;
+      </ThemeProvider >
 
     </>
   )

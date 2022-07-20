@@ -1,7 +1,8 @@
 import React from 'react'
-import { Nav, Navbar, Container, Stack } from 'react-bootstrap'
+import { Nav, Navbar, Container, Stack, Button } from 'react-bootstrap'
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom'
+import LoginIcon from '@mui/icons-material/Login';
 
 export const Header = () => {
     return (
@@ -22,6 +23,9 @@ export const Header = () => {
                             <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">New Release</Link></Nav.Link>
                             <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">My List</Link></Nav.Link>
                         </Stack>
+                    </Nav>
+                    <Nav className='justify-content-end'>
+                        <Button size='lg'><LoginIcon style={{ marginRight: '0.6rem' }} /><Link style={{ textDecoration: 'none', color: 'white' }} to="/login">Login</Link></Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
