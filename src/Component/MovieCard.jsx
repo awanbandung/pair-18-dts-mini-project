@@ -17,26 +17,28 @@ export const CardMovie = (props) => {
     return (
         // di sini kita menggunakan Component Card dari MUI
         <Card className="boxy" sx={{ margin: '5px' }}>
-            <Box className="boxy">
-                <CardMedia
-                    component="img"
-                    image={`${baseUrlForMovie}${props.movie.poster_path}`}
-                    alt={props.movie.title}
-                ></CardMedia>
-                <CardContent>
-                    <Typography component="div" variant="body1">
-                        {props.movie.title}
-                    </Typography>
-                    <Rating
-                        value={props.movie.vote_average / 2}
-                        precision={0.1}
-                        readOnly
-                    />
-                    <Typography variant="body2">
-                        Release date: {props.movie.release_date}
-                    </Typography>
-                </CardContent>
-            </Box>
-        </Card>
+            <Link style={{ textDecoration: "none" }} to={`/detail/${props.movie.id}`}>
+                <Box className="boxy">
+                    <CardMedia
+                        component="img"
+                        image={`${baseUrlForMovie}${props.movie.poster_path}`}
+                        alt={props.movie.title}
+                    ></CardMedia>
+                    <CardContent>
+                        <Typography component="div" variant="body1">
+                            {props.movie.title}
+                        </Typography>
+                        <Rating
+                            value={props.movie.vote_average / 2}
+                            precision={0.1}
+                            readOnly
+                        />
+                        <Typography variant="body2">
+                            Release date: {props.movie.release_date}
+                        </Typography>
+                    </CardContent>
+                </Box>
+            </Link>
+        </Card >
     );
 };

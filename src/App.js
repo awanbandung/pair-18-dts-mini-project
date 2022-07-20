@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { ThemeProvider } from 'react-bootstrap';
 import Login from './Pages/Login'
+import { LoggedInComponent } from './Component/LoggedInComponent';
+import { MovieDetail } from './Pages/MovieDetail';
 
 const App = () => {
   return (
@@ -18,6 +20,14 @@ const App = () => {
           <Route path='/' element={<Homepage />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route
+            path="/detail/:MovieID"
+            element={
+              <LoggedInComponent>
+                <MovieDetail />
+              </LoggedInComponent>
+            }
+          />
         </Routes>
       </ThemeProvider >
 
