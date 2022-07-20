@@ -29,7 +29,7 @@ export const Header = () => {
                     <Nav className="me-auto">
                         <Stack direction='horizontal' gap={3}>
                             <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Home</Link></Nav.Link>
-                            <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/cek">Best Rated</Link></Nav.Link>
+                            <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">Best Rated</Link></Nav.Link>
                             <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">New Release</Link></Nav.Link>
                             <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to="/">My List</Link></Nav.Link>
                         </Stack>
