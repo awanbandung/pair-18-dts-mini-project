@@ -4,7 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 export default function Slideshow() {
   return (
     <div>
-      <Carousel fade style={{ }}>
+      <Carousel fade style={{}}>
         <Carousel.Item  >
           <img
             style={{
