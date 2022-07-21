@@ -2,6 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,58 +26,97 @@ const auth = getAuth(app)
 
 const register = async (email, password) => {
     // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth
-    try {
-        const response = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    await createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const navigate = useNavigate();
+      navigate("/");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
 
-        console.log(
-            "Registered user",
-            response.user
-        );
-    } catch (err) {
-        console.log(err);
-    }
+      if (errorCode === "auth/wrong-password") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Wrong Password!",
+        });
+      }
+      if (errorCode === "auth/user-not-found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "User Not Found!",
+        });
+      }
+    });
 };
 
 // Fungsi untuk Login
 const login = async (email, password) => {
     // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
-    try {
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    await signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const navigate = useNavigate();
+      navigate("/");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
 
-        console.log("Signed In user", userCredential.user);
-    } catch (err) {
-        console.log(err);
-    }
+      if (errorCode === "auth/wrong-password") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Wrong Password!",
+        });
+      }
+      if (errorCode === "auth/user-not-found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "User Not Found!",
+        });
+      }
+    });
 };
 
 // Fungsi untuk reset Password
 const resetPassword = async (email) => {
     // Dokumentasi: https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
-    try {
-        await sendPasswordResetEmail(auth, email);
+    // try {
+    //     await sendPasswordResetEmail(auth, email);
 
-        console.log("Password reset sudah dikirimkan");
-    } catch (err) {
-        console.log(err);
-    }
+    //     console.log("Password reset sudah dikirimkan");
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+    await sendPasswordResetEmail(auth, email)
+    .then((res) => console.log(res))
+    .catch((error) => {
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: errorMessage,
+      });
+    });
 };
 
 // Fungsi untuk sign out
 const logout = async () => {
     // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#next_steps
-    try {
-        await signOut(auth);
-    } catch (err) {
-        console.log(err);
-    }
+    await signOut(auth)
+    .then((res) => {
+      console.log("success logout", res);
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
+    });
 };
 
 // Export function
